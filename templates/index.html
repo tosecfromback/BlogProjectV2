@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+  <h1>Here Is IndexPage</h1>
+  <h2>{% trans "Hello World" %}</h2>
+  <a href="{% url 'blog:list' %}">게시판으로</a>
+  <a href="{% url 'user:login' %}">로그인</a>
+{% endblock content %}
