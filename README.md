@@ -17,8 +17,8 @@
 
 
 ## 모델 및 구조
- 1. ERD
-
+ 1. ERD  
+ <img src="./readme/MiniBoard.png">
  2. 파일구조
  django_tree.md
 
