@@ -28,7 +28,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, max_length=155)
-    nickname = models.CharField(unique=True, max_length=30)
+    nickname = models.CharField(unique=True, max_length=50)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -36,7 +36,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = [ 'nickname']
-
+    REQUIRED_FIELDS = ['nickname']
     
     objects = UserManager()

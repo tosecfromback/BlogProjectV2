@@ -2,28 +2,66 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
-# from .forms import RegisterFrom
+from .forms import RegisterForm, LoginForm
+
 
 # Create your views here.
 
 ### Join
-class SignupView(View):
+class Signup(View):
     def get(self, request):
-        pass
+        if request.user.is_authenticated:
+            return redirect('blog:list')
+        form = RegisterForm()
+        context = {
+            'form': form,
+            'title': 'User'
+        }
+        return render(request, 'user/user_register.html', context)
+    
     def post(self, request):
-        pass
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('user:login')
+
 
 
 ### LogIn
-class UserLoginView(View):
+class UserLogin(View):
     def get(self, request):
-        pass
+        if request.user.is_authenticated:
+            return redirect('blog:list')
+        
+        form = LoginForm()
+        context = {
+            'form': form,
+            'title': 'User'
+        }
+        return render(request, 'user/user_login.html', context)
+        
     def post(self, request):
-        pass
-
+        if request.user.is_authenticated:
+            return redirect('blog:list')
+        
+        form = LoginForm(request, request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=email, password=password) # True, False
+            
+            if user:
+                login(request, user)
+                return redirect('blog:list')
+            
+        context = {
+            'form': form
+        }
+        
+        return render(request, 'user/user_login.html', context)
 
 ### LogOut
-class UserLogoutView(View):
+class UserLogout(View):
     def get(self, request):
         pass
     def post(self, request):
@@ -31,21 +69,21 @@ class UserLogoutView(View):
 
 
 ### Profile
-class UserProfileDetailView(View):
+class UserProfileDetail(View):
     def get(self, request):
         pass
     def post(self, request):
         pass
 
 
-class UserProfileUpdateView(View):
+class UserProfileUpdate(View):
     def get(self, request):
         pass
     def post(self, request):
         pass
 
 
-class UserDrawalView(View):
+class UserDrawal(View):
     def get(self, request):
         pass
     def post(self, request):

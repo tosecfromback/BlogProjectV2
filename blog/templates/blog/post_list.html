@@ -1,4 +1,37 @@
 {% extends "base.html" %}
+
 {% block content %}
-  <p>이곳은 블로그의 글 목록입니다</p>
+  <p class="main-title">블로그 게시판의 첫 화면</p>
+  {% if posts %}
+    <table class="table">
+        <thead class="table-light">
+            <tr>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일자</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+              <tr>
+                {% if post.visible == True %}
+                  
+                <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.title }}</a></td>
+                <td>{{ post.writer }}</td>
+                <td>{{ post.updated_at }}</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  {% else %}
+    <h1>현재 작성된 글이 없습니다.</h1>
+  {% endif %}
+  <form action="{% url 'blog:write' %}" method="get">
+    <input type="hidden" name="'{{ redirect_field_name }}" value="{{ request.GET.next }}">
+    <input type="submit" value="글 작성">
+  </form>
+  <form action="{% url 'user:logout' %}" method="post">
+    <input type="submit" value="로그아웃">
+  </form>
 {% endblock content %}

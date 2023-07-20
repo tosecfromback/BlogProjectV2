@@ -20,8 +20,9 @@ class Post(models.Model):
     content = models.TextField()
     category = models.CharField(max_length=20, null=True, blank=True, choices=CATEGORY)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
-    create_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    visible = models.BooleanField(default=True)
     
     def __str__(self):
         return self.title
@@ -30,9 +31,10 @@ class Comment(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     content = models.TextField()
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
-    create_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     inheritance = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    visible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.content[:10]
