@@ -55,6 +55,7 @@ class PostCreate(LoginRequiredMixin, View):
 
 
 class PostDetail(View):
+
     def get(self, request, pk):
         post = Post.objects.prefetch_related('comment_set').get(pk=pk)
 
@@ -77,16 +78,17 @@ class PostDetail(View):
 
 
 class PostUpdate(View):
+
     def get(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
-        form = PostForm(initial={'title':post.title, 'content': post.content})
+        form = PostForm(initial={'title':post.title, 'content': post.content, 'category':post.category})
         context = {
             'form' : form,
             'post' : post,
             "title" : "BlogEdit",
         }
 
-        return render(request, 'blog/post_eidt.html', context)
+        return render(request, 'blog/post_edit.html', context)
 
     def post(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
@@ -107,6 +109,7 @@ class PostUpdate(View):
 
 
 class PostDelete(View):
+
     def post(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
         post.visible = False
@@ -145,7 +148,6 @@ class CommentCreate(LoginRequiredMixin, View):
             "title": "Blog",
             'post_id': pk,
             'comments': post.comment_set.all(),
-            'hashtags': post.hashtag_set.all(),
             'comment_form': form
         }
         return render(request, 'blog/post_detail.html', context)

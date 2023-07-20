@@ -46,6 +46,7 @@ class UserLogin(View):
         
         form = LoginForm(request, request.POST)
         if form.is_valid():
+            # email = form.cleaned_data['username']
             email = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username=email, password=password) # True, False
@@ -62,10 +63,9 @@ class UserLogin(View):
 
 ### LogOut
 class UserLogout(View):
-    def get(self, request):
-        pass
     def post(self, request):
-        pass
+        logout(request)
+        return redirect('base.html')
 
 
 ### Profile

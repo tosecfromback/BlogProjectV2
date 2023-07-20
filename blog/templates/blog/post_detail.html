@@ -3,21 +3,14 @@
 
 {% block content %}
   <h2>{% trans "Title :" %} {{ post_title }}</h2>
-  {% comment %}
     
   {% if post_writer == request.user %}
-    <a href="{% url 'blog:edit' pk=post.id %}" class="btn">{% trans "수정" %}</a>
-    <form action="{% url 'blog:delete' pk=post.id %}" method="post">
+    <a href="{% url 'blog:edit' pk=post_id %}" class="btn">{% trans "수정" %}</a>
+    <form action="{% url 'blog:delete' pk=post_id %}" method="post">
         {% csrf_token %}
         <input type="submit" value="{% trans 'Delete' %}" class="btn">
     </form>
   {% endif %}
-  {% endcomment %}
-  <a href="{% url 'blog:edit' pk=post_id %}" class="btn">{% trans "수정" %}</a>
-  <form action="{% url 'blog:delete' pk=post_id %}" method="post">
-      {% csrf_token %}
-      <input type="submit" value="{% trans 'Delete' %}" class="btn">
-  </form>
 
     <p>{% trans 'Content:' %} {{ post_content }}</p>
     <p>{% trans 'Writer:' %} {{ post_writer }}</p>
@@ -35,7 +28,7 @@
         {% else %}
             {{ comment_form.content }}
         {% endif %}
-        <input type="submit" value="{% trans 'Submit' %}">
+        <input type="submit" value="{% trans 'submit' %}">
     </form>
     <br>
     

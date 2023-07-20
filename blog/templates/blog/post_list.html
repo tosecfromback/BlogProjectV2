@@ -2,6 +2,7 @@
 
 {% block content %}
   <p class="main-title">블로그 게시판의 첫 화면</p>
+  <p>안녕하세요 {{ user.nickname }}님</p>
   {% if posts %}
     <table class="table">
         <thead class="table-light">
@@ -32,6 +33,7 @@
     <input type="submit" value="글 작성">
   </form>
   <form action="{% url 'user:logout' %}" method="post">
+    {% csrf_token %}
     <input type="submit" value="로그아웃">
   </form>
 {% endblock content %}
