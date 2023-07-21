@@ -19,10 +19,7 @@
 ## 모델 및 구조
  1. ERD  
  <img src="./readme/MiniBoard.png">
- 2. 파일구조
- django_tree.md
-
- 3. URL
+ 2. URL
  ```
     ### 공용페이지
     "" : 인덱스(목록)
@@ -42,6 +39,12 @@
     "user/register/" : 회원가입
     "user/login/" : 로그인
  ```
+ 3. 실행화면
+ <img src"./readme/00.MainPage.png">
+ <img src"./readme/01.BlogPage.png">
+ <img src"./readme/02.BlogWrite.png">
+ <img src"./readme/03.BlogDetail.png">
+ <img src"./readme/04.BlogEdit.png">
 
 
 ## 회고
