@@ -19,9 +19,17 @@
 ## 모델 및 구조
  1. ERD  
  <img src="./readme/MiniBoard.png">
- 2. URL
+
+ 2. 실행화면
+ <img src="./readme/00.MainPage.png">
+ <img src="./readme/01.BlogPage.png">
+ <img src="./readme/02.BlogWrite.png">
+ <img src="./readme/03.BlogDetail.png">
+ <img src="./readme/04.BlogEdit.png">
+
+ 3. url
  ```
-    ### 공용페이지
+  ### 공용페이지
     "" : 인덱스(목록)
 
     ### 게시글
@@ -39,14 +47,8 @@
     "user/register/" : 회원가입
     "user/login/" : 로그인
  ```
- 3. 실행화면
- <img src"./readme/00.MainPage.png">
- <img src"./readme/01.BlogPage.png">
- <img src"./readme/02.BlogWrite.png">
- <img src"./readme/03.BlogDetail.png">
- <img src"./readme/04.BlogEdit.png">
-
-
+   
+   
 ## 회고
  - 발표자료를 만들며 일부 기능을 수정하던 중 csrf_token 에러로 화면캡쳐를 제대로 하지 못 함
  - 기능을 구현하는 과정에서 참고하는 코드 간의 model이나 상속받는 부분에서 구조파악을 충분히하지 않아 시간을 과도하게 잡아 먹은 부분이 아쉽지만 다음부터는 구조에 대한 최소한의 이해도를 갖고 가져가면서 Django에 대한 이해도를 채워가고 싶다는 욕심이 생겼습니다.
