@@ -12,7 +12,7 @@ urlpatterns = [
     # 로그아웃
     path('logout/', views.UserLogout.as_view(),name='logout'),
     # 회원정보
-    path('profile/', views.UserProfileDetail.as_view(),name='profile'),
+    path('profile/', views.profile, name='profile'),
     # 회원탈퇴
     path('withdrawal/', views.UserDrawal.as_view(),name='withdrawal'),
 ]

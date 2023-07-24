@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
 from .forms import RegisterForm, LoginForm
 
@@ -48,9 +49,9 @@ class UserLogin(View):
         form = LoginForm(request, request.POST)
         if form.is_valid():
             # email = form.cleaned_data['username']
-            email = form.cleaned_data['username']
+            nickname = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(username=email, password=password) # True, False
+            user = authenticate(username=nickname, password=password) # True, False
             
             if user:
                 login(request, user)
@@ -67,9 +68,13 @@ class UserLogout(View):
     def post(self, request):
         logout(request)
         redirect('index.html')
-        return render(request, 'base.html')
+        return render(request, 'index.html')
 
 ### Profile
+@login_required
+def profile(request):
+    return render(request, 'user/user_profile.html')
+
 class UserProfileDetail(View):
     def get(self, request):
         pass

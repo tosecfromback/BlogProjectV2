@@ -2,7 +2,16 @@
 
 {% block content %}
   <p class="main-title">블로그 게시판의 첫 화면</p>
+  {% if user.nickname == null %}
+  <p>당신은 게스트로 접속했습니다. 작성 및 수정이 불가능합니다.</p>
+  {% else %}
   <p>안녕하세요 {{ user.nickname }}님</p>
+  <form action="{% url 'user:profile' %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="프로필보기">
+  </form>
+  {% endif %}
+  
   {% if posts %}
     <table class="table">
         <thead class="table-light">

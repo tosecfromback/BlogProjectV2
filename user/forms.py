@@ -7,21 +7,21 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = [ 'email', 'nickname', 'password1', 'password2' ]
+        fields = [ 'nickname', 'password1', 'password2' ]
 
 
 class LoginForm(AuthenticationForm):
     
     class Meta:
         model = User
-        fields = [ 'email', 'password']
+        fields = [  'nickname', 'password']
 
 
 class UserChangeForm(UserChangeForm):
     
     class Meta:
         modle = User
-        fields = [ 'email', 'nickname' ]
+        fields = [ 'nickname' ]
 
 
 class PasswordUpdateFrom(PasswordChangeForm):
