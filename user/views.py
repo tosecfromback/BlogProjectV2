@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import LogoutView
 from .forms import RegisterForm, LoginForm
 
 
@@ -65,8 +66,8 @@ class UserLogin(View):
 class UserLogout(View):
     def post(self, request):
         logout(request)
-        return redirect('base.html')
-
+        redirect('index.html')
+        return render(request, 'base.html')
 
 ### Profile
 class UserProfileDetail(View):
